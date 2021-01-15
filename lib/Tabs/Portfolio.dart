@@ -1,3 +1,4 @@
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 class Portfolio extends StatefulWidget {
@@ -6,19 +7,18 @@ class Portfolio extends StatefulWidget {
 }
 
 class _PortfolioState extends State<Portfolio> {
+  int touchedIndex;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       // appBar: AppBar(
-      //   title: Text('Home'),
+      //   title: Text(''),
       // ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            SizedBox(
-              height: 15,
-            ),
             Card(
                 elevation: 0,
                 child: SizedBox(
@@ -61,6 +61,50 @@ class _PortfolioState extends State<Portfolio> {
             SizedBox(
               height: 10,
             ),
+            AspectRatio(
+              aspectRatio: 1.3,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)
+                  ),
+                  color: Colors.white,
+                  child: Row(
+                    children: <Widget>[
+                      const SizedBox(
+                        height: 18,
+                      ),
+                      Expanded(
+                        child: AspectRatio(
+                          aspectRatio: 1,
+                          child: PieChart(
+                            PieChartData(
+                                pieTouchData: PieTouchData(touchCallback: (pieTouchResponse) {
+                                  setState(() {
+                                    if (pieTouchResponse.touchInput is FlLongPressEnd ||
+                                        pieTouchResponse.touchInput is FlPanEnd) {
+                                      touchedIndex = -1;
+                                    } else {
+                                      touchedIndex = pieTouchResponse.touchedSectionIndex;
+                                    }
+                                  });
+                                }),
+                                borderData: FlBorderData(
+                                  show: false,
+                                ),
+                                sectionsSpace: 0,
+                                centerSpaceRadius: 40,
+                                sections: showingSections()),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
@@ -390,4 +434,55 @@ class _PortfolioState extends State<Portfolio> {
       ),
     );
   }
+
+  List<PieChartSectionData> showingSections() {
+    return List.generate(4, (i) {
+      final isTouched = i == touchedIndex;
+      final double fontSize = isTouched ? 25 : 16;
+      final double radius = isTouched ? 60 : 50;
+      switch (i) {
+        case 0:
+          return PieChartSectionData(
+            color: const Color(0xff0293ee),
+            value: 40,
+            title: '40%',
+            radius: radius,
+            titleStyle: TextStyle(
+                fontSize: fontSize, fontWeight: FontWeight.bold, color: const Color(0xffffffff)),
+          );
+        case 1:
+          return PieChartSectionData(
+            color: const Color(0xfff8b250),
+            value: 30,
+            title: '30%',
+            radius: radius,
+            titleStyle: TextStyle(
+                fontSize: fontSize, fontWeight: FontWeight.bold, color: const Color(0xffffffff)),
+          );
+        case 2:
+          return PieChartSectionData(
+            color: const Color(0xff845bef),
+            value: 15,
+            title: '15%',
+            radius: radius,
+            titleStyle: TextStyle(
+                fontSize: fontSize, fontWeight: FontWeight.bold, color: const Color(0xffffffff)),
+          );
+        case 3:
+          return PieChartSectionData(
+            color: const Color(0xff13d38e),
+            value: 15,
+            title: '15%',
+            radius: radius,
+            titleStyle: TextStyle(
+                fontSize: fontSize, fontWeight: FontWeight.bold, color: const Color(0xffffffff)),
+          );
+        default:
+          return null;
+      }
+    });
+  }
+
+
 }
+

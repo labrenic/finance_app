@@ -15,6 +15,13 @@ class MyApp extends StatelessWidget {
         // accentColor: Color(0xFFC7F9CC),
         textTheme: TextTheme(),
 
+        dividerTheme: DividerThemeData(
+          thickness: 1,
+          indent: 16,
+          endIndent: 16,
+          color: Colors.black
+        ),
+
         primarySwatch: Colors.blue,
         // This makes the visual density adapt to the platform that you run
         // the app on. For desktop platforms, the controls will be smaller and

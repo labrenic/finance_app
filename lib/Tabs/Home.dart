@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:finance_app/CustomWidgets/CustomAppBar.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -66,18 +65,70 @@ class _HomeState extends State<Home> {
                   ),
                 )
             ),
-            Stack(
-              children: <Widget>[
-                AspectRatio(
-                  aspectRatio: 1.70,
-                  child: Container(
-                    decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(18),
-                        ),
-                        color: Color(0xff232d37)),
-                    child: LineChart(
-                      showAvg ? avgData() : mainData(),
+            AspectRatio(
+              aspectRatio: 1.70,
+              child: Container(
+                decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(18),
+                    ),
+                    color: Color(0xff232d37)),
+                child: LineChart(
+                  showAvg ? avgData() : mainData(),
+                ),
+              ),
+            ),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SizedBox(
+                  width: 60,
+                  height: 34,
+                  child: FlatButton(
+                    onPressed: (){},
+                    child: Text(
+                      '1D',
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 60,
+                  height: 34,
+                  child: FlatButton(
+                    onPressed: (){},
+                    child: Text(
+                      '1W',
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 60,
+                  height: 34,
+                  child: FlatButton(
+                    onPressed: (){},
+                    child: Text(
+                      '1M',
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 60,
+                  height: 34,
+                  child: FlatButton(
+                    onPressed: (){},
+                    child: Text(
+                      '3M',
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 60,
+                  height: 34,
+                  child: FlatButton(
+                    onPressed: (){},
+                    child: Text(
+                      '1Y',
                     ),
                   ),
                 ),
@@ -91,16 +142,75 @@ class _HomeState extends State<Home> {
                       });
                     },
                     child: Text(
-                      'avg',
-                      style: TextStyle(
-                          fontSize: 12,
-                          color: showAvg ? Colors.white.withOpacity(0.5) : Colors
-                              .white),
+                      'AVG',
                     ),
                   ),
                 ),
               ],
             ),
+            Container(
+              alignment: AlignmentDirectional.centerStart,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text('Stocks',
+                  style: TextStyle(fontSize: 25),
+                ),
+              ),
+            ),
+            ListTile(
+                title: Text('Sample Text1'),
+                subtitle: Text('BTC'),
+                trailing: Text(
+                    '+3.64',
+                    style: TextStyle(fontWeight: FontWeight.bold, color: Colors.green, fontSize: 18)
+                )
+            ),
+
+            ListTile(
+
+                title: Text('Sample Text1'),
+                subtitle: Text('BTC'),
+                trailing: Text(
+                    '+3.64',
+                    style: TextStyle(fontWeight: FontWeight.bold, color: Colors.green, fontSize: 18)
+                )
+            ),
+
+            ListTile(
+
+                title: Text('Sample Text1'),
+                subtitle: Text('BTC'),
+                trailing: Text(
+                    '+3.64',
+                    style: TextStyle(fontWeight: FontWeight.bold, color: Colors.green, fontSize: 18)
+                )
+            ),
+            ListTile(
+
+                title: Text('Sample Text1'),
+                subtitle: Text('BTC'),
+                trailing: Text(
+                    '+3.64',
+                    style: TextStyle(fontWeight: FontWeight.bold, color: Colors.green, fontSize: 18)
+                )
+            ),
+            ListTile(
+
+                title: Text('Sample Text1'),
+                subtitle: Text('BTC'),
+                trailing: Text(
+                    '+3.64',
+                    style: TextStyle(fontWeight: FontWeight.bold, color: Colors.green, fontSize: 18)
+                )
+            ),
+            ListTile(
+                title: Text('Sample Text1'),
+                subtitle: Text('BTC'),
+                trailing: Text(
+                    '+3.64',
+                    style: TextStyle(fontWeight: FontWeight.bold, color: Colors.green, fontSize: 18)
+                )
+            )
           ],
         ),
       ),
